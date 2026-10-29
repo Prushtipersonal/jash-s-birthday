@@ -22,7 +22,7 @@ const CONFIG = {
                                       // If filled, the welcome page shows "X days together".
 
   // ---------- 2. OPENING SCREEN ----------
-  introTitle: "Hey, Birthday My Pretty Boy...",
+  introTitle: "Happy Birthday My Pretty Boy...",
   introLine: "There's Something I Made For You ❤️",
   introQuestion: "Are you ready to see what your girl made for you?",
   openButton: "OPEN YOUR SURPRISE ❤️",
