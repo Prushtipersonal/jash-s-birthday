@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0D0710">
+<title>A Little Surprise For You ❤️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Night sky: stars, floating hearts and sparkles are drawn here by script.js -->
+<canvas id="sky" aria-hidden="true"></canvas>
+
+<!-- Top controls -->
+<div id="progress" aria-hidden="true"><span id="progressBar"></span></div>
+<button id="backBtn" class="chip" type="button" hidden aria-label="Go back to the previous page">‹ Back</button>
+<button id="musicBtn" class="chip" type="button" hidden aria-pressed="false" aria-label="Play music">
+  <span aria-hidden="true">♪</span>
+  <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+</button>
+
+<main id="stage">
+
+  <!-- 1. OPENING SCREEN -->
+  <section class="scene" id="scene-intro" aria-labelledby="introTitle">
+    <div class="wrap">
+      <h1 id="introTitle" class="glow" tabindex="-1"></h1>
+      <p id="introLine" class="lead"></p>
+      <p id="introQuestion" class="lead strong"></p>
+      <button id="openBtn" class="btn btn-pulse" type="button"></button>
+      <p id="headphones" class="small"></p>
+      <p id="introWelcome" class="welcome-flash" hidden aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- 2. WELCOME -->
+  <section class="scene" id="scene-welcome" aria-labelledby="welcomeTitle">
+    <div class="wrap">
+      <h2 id="welcomeTitle" class="glow" tabindex="-1"></h2>
+      <p id="welcomeLine" class="lead"></p>
+      <p id="welcomeParagraph" class="body"></p>
+      <p id="welcomeCounter" class="pill" hidden></p>
+      <button class="btn" type="button" data-go="next" id="welcomeBtn"></button>
+    </div>
+  </section>
+
+  <!-- 3. QUIZ -->
+  <section class="scene" id="scene-quiz" aria-labelledby="quizTitle">
+    <div class="wrap">
+      <h2 id="quizTitle" class="glow" tabindex="-1"></h2>
+      <div id="quizPlay">
+        <p id="quizCount" class="small"></p>
+        <div class="meter" aria-hidden="true"><span id="quizMeter"></span></div>
+        <h3 id="quizQuestion" class="question"></h3>
+        <div id="quizOptions" class="options"></div>
+        <p id="quizReaction" class="reaction" hidden aria-live="polite"></p>
+        <button id="quizNext" class="btn" type="button" hidden></button>
+      </div>
+      <div id="quizResult" hidden>
+        <p id="quizPass" class="lead strong"></p>
+        <p id="quizScore" class="small"></p>
+        <button class="btn btn-pulse" type="button" data-go="next" id="quizUnlock"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. REASONS -->
+  <section class="scene" id="scene-reasons" aria-labelledby="reasonsTitle">
+    <div class="wrap">
+      <h2 id="reasonsTitle" class="glow" tabindex="-1"></h2>
+      <p id="reasonsHint" class="lead"></p>
+      <div id="reasonGrid" class="reason-grid"></div>
+      <p id="reasonCount" class="small" aria-live="polite"></p>
+      <button class="btn" type="button" data-go="next" id="reasonsBtn"></button>
+    </div>
+  </section>
+
+  <!-- 5. GALLERY -->
+  <section class="scene" id="scene-gallery" aria-labelledby="galleryTitle">
+    <div class="wrap wide">
+      <h2 id="galleryTitle" class="glow" tabindex="-1"></h2>
+      <p id="galleryHint" class="lead"></p>
+      <div id="photoGrid" class="photo-grid"></div>
+      <button class="btn" type="button" data-go="next" id="galleryBtn"></button>
+    </div>
+  </section>
+
+  <!-- 6. LETTER -->
+  <section class="scene" id="scene-letter" aria-labelledby="letterTitle">
+    <div class="wrap">
+      <h2 id="letterTitle" class="glow" tabindex="-1"></h2>
+      <div id="paper" class="paper" role="article" tabindex="0">
+        <p id="letterText" aria-hidden="true"><span id="typed"></span><i class="caret"></i></p>
+      </div>
+      <p id="letterSkip" class="small">Tap the letter to show it all at once.</p>
+      <button class="btn btn-pulse" type="button" data-go="next" id="letterBtn" hidden></button>
+    </div>
+  </section>
+
+  <!-- 7. FINAL SURPRISE -->
+  <section class="scene" id="scene-final" aria-labelledby="finalTitle">
+    <div class="wrap">
+      <div id="giftStage">
+        <h2 id="finalTitle" class="glow" tabindex="-1"></h2>
+        <div class="gift" id="gift" aria-hidden="true">
+          <div class="gift-glow"></div>
+          <div class="gift-lid"><i class="bow"></i></div>
+          <div class="gift-box"></div>
+        </div>
+        <p id="finalPromise" class="lead"></p>
+        <button id="giftBtn" class="btn btn-pulse" type="button"></button>
+      </div>
+      <div id="finalReveal" hidden>
+        <div id="finalMessage" class="final-card"></div>
+        <div id="videoBox" class="video-box" hidden></div>
+        <button id="replayBtn" class="btn ghost" type="button"></button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Reason message popup -->
+<div id="reasonOverlay" class="overlay" hidden>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="reasonMessage">
+    <svg class="big-heart" viewBox="0 0 32 29" aria-hidden="true"><path d="M16 28S2 19 2 10A7 7 0 0 1 16 6a7 7 0 0 1 14 4c0 9-14 18-14 18z"/></svg>
+    <p id="reasonMessage"></p>
+    <div class="dialog-actions">
+      <button id="reasonClose" class="btn ghost" type="button">Close</button>
+      <button id="reasonNext" class="btn" type="button">Another one ❤️</button>
+    </div>
+  </div>
+</div>
+
+<!-- Photo lightbox -->
+<div id="lightbox" class="overlay" hidden>
+  <div class="dialog light" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <div id="lightMedia" class="light-media"></div>
+    <p id="lightCaption" class="light-caption"></p>
+    <button id="lightClose" class="btn ghost" type="button">Close ✕</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
